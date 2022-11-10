@@ -14,7 +14,8 @@ import java.sql.Statement;
  *
  * @author rafae
  */
-public class Program {
+public class JBDCconn {
+    
     public static void main(String[] args) {
          try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "");
@@ -26,12 +27,13 @@ public class Program {
                         " -//- ID da conta: "+
                         rs.getString("id da conta")+
                         " -//- Saldo atual: "+
-                        rs.getFloat("saldo atual")
-                );
+                        rs.getFloat("saldo atual"));
+                closeConn(conn);
             }  
         } catch (SQLException ex) {
             System.out.println("A conexão com o banco falhou: " + ex.getMessage());
         }
+        
     }
     
     public static void closeConn(Connection conexao){
